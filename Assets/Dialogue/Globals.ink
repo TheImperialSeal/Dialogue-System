@@ -1,0 +1,1 @@
+VAR bearStatus = false

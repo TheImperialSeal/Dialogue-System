@@ -9,7 +9,13 @@ using UnityEngine.InputSystem;
 // using a PlayerInput component with Unity Events.
 
 
-//Pretty much none of this does anything so don't worry about it for the time being
+//Pretty much none of this does anything so don't worry about it
+//If I delete it then it messes up other stuff but it pretty much does nothing. I could get rid of it but
+//I do intend to use it later on and I already set the UI system up to think it's using this even though it isn't.
+//I still don't really understand the fancy input system here and I have other stuff I'm working on at the moment
+//I'll come back to this
+
+//also I wrote none of this, I shamelessly stole it
 
 
 [RequireComponent(typeof(PlayerInput))]

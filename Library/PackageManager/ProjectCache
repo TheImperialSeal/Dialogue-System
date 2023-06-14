@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218105590108795
-    m_Hash: 2276092302
+      ticks: 638223495691077343
+    m_Hash: 2436353981
   m_LockFileStatus:
     m_FilePath: G:/GitHub/DialogueSystem/Dialogue-System/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218105590228825
-    m_Hash: 2063585468
+      ticks: 638223495691082342
+    m_Hash: 2435527749
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

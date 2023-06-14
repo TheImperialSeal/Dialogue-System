@@ -1,5 +1,11 @@
-VAR bear_passed = false
+INCLUDE Globals.ink
+VAR bear_passed = true
+->BearStart
+
+{ BearPassed: == 0: -> BearStart | -> BearEnd }
+
 === BearStart ===
+
 I'm not letting you past
 
 * [Come on Ursa, let me past you stupid fat bear]
@@ -32,5 +38,7 @@ I'm not letting you past
 -else:
     bear not passed
 }
+
+~bearStatus = bear_passed
 
 ->DONE

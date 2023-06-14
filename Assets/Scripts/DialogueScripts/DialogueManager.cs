@@ -4,9 +4,13 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Ink.UnityIntegration; //Unity Integration doesn't work in actual builds, this can only be a temporary solution
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Globals Ink File")]
+    [SerializeField] private InkFile globalsInkFile;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -17,6 +21,8 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+
+    private DialogueVariables dialogueVariables; //reference to the dialogue variables script
 
     public bool dialogueIsPlaying { get; private set; }
 
@@ -29,6 +35,8 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than on Dialogue Manager in the scene");
         }
         instance = this;
+
+        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
     }
 
     public static DialogueManager GetInstance()
@@ -72,6 +80,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
+        dialogueVariables.StartListening(currentStory); //start listening for changes to variables when conversation begins
+
         ContinueStory();
 
         //when dialogue starts, dialogue panel activates and the text from file is displayed
@@ -80,6 +90,8 @@ public class DialogueManager : MonoBehaviour
     private void ExitDialogueMode()
     {
         //end dialogue when dialogue is over. Could also be used for an "exit dialogue" button
+
+        dialogueVariables.StopListening(currentStory); //stop listening when it ends
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -136,5 +148,17 @@ public class DialogueManager : MonoBehaviour
         //Triggered by the "on clicked" event on the UI buttons. Tells current story which option was chosen
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+    }
+
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+
+        if (variableValue == null)
+        {
+            Debug.LogWarning("Ink Variable was null" + variableName);
+        }
+        return variableValue;
     }
 }

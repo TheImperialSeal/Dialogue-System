@@ -1123,6 +1123,7 @@ MonoBehaviour:
   - {fileID: 1864714408}
   - {fileID: 1647593524}
   - {fileID: 1759486769}
+  loadGlobalsJSON: {fileID: 4900000, guid: 7b17e799bc7fad54f8b762716ba4e4ca, type: 3}
 --- !u!1 &1647593524
 GameObject:
   m_ObjectHideFlags: 0

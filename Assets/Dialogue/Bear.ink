@@ -11,7 +11,7 @@ I'm not letting you past
 * [Come on Ursa, let me past you stupid fat bear]
     ->BearFailed
 
-* [But this is really important, the fate of the village is at steak]
+* [But this is really important, the fate of the village is at stake]
     ->BearPassed
 
 * [Well it was good while it lasted, I'm going home]

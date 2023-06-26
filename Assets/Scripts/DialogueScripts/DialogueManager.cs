@@ -4,13 +4,8 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
-using Ink.UnityIntegration; //Unity Integration doesn't work in actual builds, this can only be a temporary solution
-
 public class DialogueManager : MonoBehaviour
 {
-    [Header("Globals Ink File")]
-    [SerializeField] private InkFile globalsInkFile;
-
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -28,6 +23,10 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
 
+    // variable for the load_globals.ink JSON
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
+
     private void Awake()
     {
         if (instance != null)
@@ -36,7 +35,8 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
+        // pass that variable to the DIalogueVariables constructor in the Awake method
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogueManager GetInstance()
